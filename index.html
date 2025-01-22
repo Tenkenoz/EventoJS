@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de la página</title>
+</head>
+<body>
+    <h1 id="titulo-pagina">Introduzca un título para la página</h1>
+    <button id="boton-configuracion">Mostrar o Ocultar panel de configuración</button>
+    <div id="panel-configuracion">
+        <form>
+            <label for="titulo-input">Título de la página:</label>
+            <input type="text" id="titulo-input" />
+            <br/><br/>
+            <label for="color-fondo-input">Color de fondo:</label>
+            <input type="color" id="color-fondo-input" />
+            <br/><br/>
+            <label for="comentarios-checkbox">Habilitar comentarios:</label>
+            <input type="checkbox" id="comentarios-checkbox" />
+            <br/><br/>
+            <button id="boton-enviar">Enviar</button>
+        </form>
+    </div>
+    <div id="comentarios">
+        <textarea id="textarea-comentarios" disabled></textarea>
+    </div>
+    <ul id="lista-elementos">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ul>
+    
+    <script>
+        const panelConfig = document.getElementById('panel-configuracion');
+        document.getElementById('boton-configuracion').addEventListener('click', () => {
+            panelConfig.style.display = panelConfig.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        const tituloInput = document.getElementById('titulo-input');
+        const colorFondoInput = document.getElementById('color-fondo-input');
+        const comentariosCheckbox = document.getElementById('comentarios-checkbox');
+        const comentariosTextarea = document.getElementById('textarea-comentarios');
+        const listaElementos = document.getElementById('lista-elementos');
+        const botonEnviar = document.getElementById('boton-enviar');
+        
+        tituloInput.addEventListener('input', () => {
+            document.getElementById('titulo-pagina').innerHTML = tituloInput.value;
+        });
+        
+        colorFondoInput.addEventListener('input', () => {
+            document.body.style.backgroundColor = colorFondoInput.value;
+        });
+        
+        comentariosCheckbox.addEventListener('change', () => {
+            comentariosTextarea.disabled = !comentariosCheckbox.checked;
+        });
+        
+        listaElementos.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                e.target.remove();
+            }
+        });
+        
+        botonEnviar.addEventListener('click', () => {
+            console.log('Botón Enviar clicado');
+        });
+    </script>
+</body>
+</html>
